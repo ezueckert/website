@@ -4,17 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-/* DEIN CSS HIER */
-</style>
+<title>Before After</title>
 
+<style>
+body {
+  margin: 0;
+  background: #000;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: white;
+  cursor: ew-resize;
+}
+</style>
 </head>
+
 <body>
 
-<!-- DEIN HTML HIER -->
+<div class="container" id="container">
+  <img src="bild-full.jpg">
+  <div class="after" id="after">
+    <img src="bild-social.jpg">
+  </div>
+  <div class="slider" id="slider"></div>
+</div>
 
 <script>
-/* DEIN JS HIER */
+const container = document.getElementById("container");
+const after = document.getElementById("after");
+const slider = document.getElementById("slider");
+
+container.addEventListener("mousemove", (e) => {
+  let rect = container.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+
+  after.style.width = x + "px";
+  slider.style.left = x + "px";
+});
 </script>
 
 </body>
